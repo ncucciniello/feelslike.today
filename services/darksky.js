@@ -5,6 +5,7 @@ let myLong = '-73.952916';
 
 function search(req, res, next) {
   fetch(`https://api.darksky.net/forecast/${API_KEY}/${myLat},${myLong}`)
+  // fetch(`https://api.darksky.net/forecast/${API_KEY}/${req.query.myLat},${req.query.myLong}`)
   .then(r => r.json())
   .then((data) => {
     console.log(data);
