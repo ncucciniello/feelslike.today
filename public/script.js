@@ -5,8 +5,8 @@
   let icon = document.createElement('img');
   icon.setAttribute('id', 'icon')
   let body = document.querySelector('body');
-  let lat = '34.0195';
-  let long = '-118.4912';
+  let lat = '40.9057';
+  let long = '-74.079';
 
   function getPosition() {
     fetch(`http://ip-api.com/json`)

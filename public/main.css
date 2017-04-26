@@ -17,6 +17,10 @@ img {
   margin-top: -40px;
   margin-left: -40px;
   position: absolute;
+  animation: 1s ease-out 0s 1 slideInFromBottom;
+  -o-animation: 1s ease-out 0s 1 slideInFromBottom;
+  -moz-animation: 1s ease-out 0s 1 slideInFromBottom;
+  -webkit-animation: 1s ease-out 0s 1 slideInFromBottom;
 }
 
 h1 {
@@ -37,4 +41,32 @@ h2 {
   bottom: 40px;
   left: 40px;
   position: fixed;
+  animation: fadein 4s;
+  -o-animation: fadein 4s;
+  -moz-animation: fadein 4s;
+  -webkit-animation: fadein 4s;
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+
+  from {
+    opacity:0;
+  }
+  to {
+    opacity:1;
+  }
+}
+
+@keyframes fadein {
+  from {
+      opacity:0;
+  }
+  to {
+    opacity:1;
 }
