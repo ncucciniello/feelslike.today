@@ -8,6 +8,14 @@
   let lat = '40.9057';
   let long = '-74.0797';
 
+  function getPosition() {
+    navigator.geolocation.getCurrentPosition( (position) => {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+      getTemp();
+    });
+  }
+
   // function getPosition() {
   //   fetch(`http://ip-api.com/json`)
   //   .then(r => r.json())
@@ -57,6 +65,6 @@
     .catch(err => console.log(err));
   }
 
-  getTemp()
+  getPosition()
 
 })();
