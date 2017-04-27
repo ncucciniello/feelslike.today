@@ -57,6 +57,6 @@
     .catch(err => console.log(err));
   }
 
-  getPosition()
+  getTemp()
 
 })();
