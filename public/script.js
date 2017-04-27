@@ -10,14 +10,33 @@
 
 
   function getLocation() {
-    fetch(`/location`)
-    .then(r => r.json())
+      fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD5COJtXRtxiPkp9MERs6BJNCawEYXYC0Q`,
+    {
+      method: "POST",
+    })
+    .then((r) => {
+      return r.json()
+    })
     .then((data) => {
-      lat = data.lat;
-      long = data.lon;
+      lat = data.location.lat;
+      long = data.location.lng;
       getTemp();
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
+
+      // API request on backend
+
+    // fetch(`/location`)
+    // .then(r => r.json())
+    // .then((data) => {
+    //   console.log(data)
+    //   // lat = data.lat;
+    //   // long = data.lon;
+    //   getTemp();
+    // })
+    // .catch(err => console.log(err));
   }
 
   function getTemp() {
