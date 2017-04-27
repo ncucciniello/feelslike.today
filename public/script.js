@@ -40,6 +40,7 @@
   }
 
   function getTemp() {
+    console.log(`lat is ${lat} & lng is ${long}`)
     fetch(`/weather?myLat=${lat}&myLong=${long}`)
     .then(r => r.json())
     .then((data) => {
