@@ -5,19 +5,19 @@
   let icon = document.createElement('img');
   icon.setAttribute('id', 'icon')
   let body = document.querySelector('body');
-  let lat = '';
-  let long = '';
+  let lat = '40.9057';
+  let long = '-74.0797';
 
-  function getPosition() {
-    fetch(`http://ip-api.com/json`)
-    .then(r => r.json())
-    .then((data) => {
-      lat = data.lat;
-      long = data.lon;
-      getTemp();
-    })
-    .catch(err => console.log(err));
-  }
+  // function getPosition() {
+  //   fetch(`http://ip-api.com/json`)
+  //   .then(r => r.json())
+  //   .then((data) => {
+  //     lat = data.lat;
+  //     long = data.lon;
+  //     getTemp();
+  //   })
+  //   .catch(err => console.log(err));
+  // }
 
   function getTemp() {
     fetch(`/api?myLat=${lat}&myLong=${long}`)
