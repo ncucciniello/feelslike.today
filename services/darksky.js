@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const API_KEY = process.env.API_KEY;
 
-function search(req, res, next) {
+function getWeather(req, res, next) {
   fetch(`https://api.darksky.net/forecast/${API_KEY}/${req.query.myLat},${req.query.myLong}`)
   .then(r => r.json())
   .then((data) => {
@@ -15,4 +15,4 @@ function search(req, res, next) {
   });
 }
 
-module.exports = { search };
+module.exports = { getWeather };
