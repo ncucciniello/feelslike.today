@@ -39,14 +39,12 @@
   }
 
   function getTemp() {
-    console.log(`lat is ${lat}`)
-    console.log(`lng is ${long}`)
     fetch(`/weather?myLat=${lat}&myLong=${long}`)
     .then(r => r.json())
     .then((data) => {
 
       // set temp to curent feels like temp and round it to whole number.
-      document.querySelector('#temp').innerHTML = `Feels like ${Math.round(data.currently.apparentTemperature)} °F today.`;
+      document.querySelector('#temp').innerHTML = `Feels like ${Math.round(data.currently.apparentTemperature)}°F today.`;
 
       // creat and set icon to current weather type and string to match.
       // ** missing fog, clear-night, partly-cloudy-night, snow, & sleet **
