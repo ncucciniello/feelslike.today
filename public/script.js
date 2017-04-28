@@ -20,7 +20,11 @@
     .then((data) => {
       lat = data.location.lat;
       long = data.location.lng;
-      getTemp();
+      if ( lat == '') {
+        document.querySelector('#temp').innerHTML = `Can not find location.`;
+      } else {
+        getTemp();
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -46,7 +50,7 @@
       // set temp to curent feels like temp and round it to whole number.
       document.querySelector('#temp').innerHTML = `Feels like ${Math.round(data.currently.apparentTemperature)}°F today.`;
 
-      // creat and set icon to current weather type and string to match.
+      // create and set icon to current weather type and string to match.
       // ** missing fog, clear-night, partly-cloudy-night, snow, & sleet **
       body.appendChild(icon);
       // console.log(data.currently.icon)
