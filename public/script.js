@@ -10,7 +10,7 @@
 
 
   function getLocation() {
-      fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD5COJtXRtxiPkp9MERs6BJNCawEYXYC0Q`,
+    fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD5COJtXRtxiPkp9MERs6BJNCawEYXYC0Q`,
     {
       method: "POST",
     })
@@ -26,8 +26,7 @@
       console.log(err);
     });
 
-      // API request on backend
-
+    // // API request on backend
     // fetch(`/location`)
     // .then(r => r.json())
     // .then((data) => {
