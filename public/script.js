@@ -2,11 +2,14 @@
 
 (() => {
 
+  // creates variable for an img element with an id of icon.
   let icon = document.createElement('img');
   icon.setAttribute('id', 'icon')
+  // creates a variable for the DOM element body
   let body = document.querySelector('body');
+  // create blank variables for latitude and longitude
   let lat = '';
-  let long = '';
+  let lng = '';
 
 
   function getLocation() {
@@ -19,7 +22,7 @@
     })
     .then((data) => {
       lat = data.location.lat;
-      long = data.location.lng;
+      lng = data.location.lng;
       if ( lat == '') {
         document.querySelector('#temp').innerHTML = `Can not find location.`;
       } else {
@@ -43,7 +46,7 @@
   }
 
   function getTemp() {
-    fetch(`/weather?myLat=${lat}&myLong=${long}`)
+    fetch(`/weather?myLat=${lat}&myLong=${lng}`)
     .then(r => r.json())
     .then((data) => {
 
@@ -80,6 +83,7 @@
     .catch(err => console.log(err));
   }
 
+  // on page load the getLocation function will run
   getLocation()
 
 })();
