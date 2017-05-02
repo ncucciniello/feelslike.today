@@ -6,6 +6,7 @@
   let lat = '';
   let lng = '';
   let icon = $('<img>').attr('id', 'icon');
+  let string = $('#string');
 
   function getLocation() {
     $.ajax({
@@ -41,25 +42,25 @@
 
         if (tempData.currently.icon == 'cloudy') {
           icon.attr('src', '/assets/cloudy.png');
-          $('#string').html('So many clouds right now.');
+          string.html('So many clouds right now.');
         } else if (tempData.currently.icon == 'partly-cloudy-day') {
             icon.attr('src', '/assets/partly_cloudy.png');
-            $('#string').html('The sun is trying to sneak out right now.');
+            string.html('The sun is trying to sneak out right now.');
         } else if (tempData.currently.icon == 'partly-cloudy-night') {
             icon.attr('src', '/assets/cloudy.png');
-            $('#string').html('The moon is hiding behind some clouds.');
+            string.html('The moon is hiding behind some clouds.');
         } else if (tempData.currently.icon == 'rain') {
             icon.attr('src', '/assets/rainy.png');
-            $('#string').html('Bring an umbrella on your journey.');
+            string.html('Bring an umbrella on your journey.');
         } else if (tempData.currently.icon == 'clear-day') {
             icon.attr('src', '/assets/sunny.png');
-            $('#string').html('Bring your favorite sunglasses.');
+            string.html('Bring your favorite sunglasses.');
         } else if (tempData.currently.icon == 'clear-night') {
             icon.attr('src', '/assets/cloudy.png');
-            $('#string').html('The moon and stars are looking good right now.');
+            string.html('The stars are looking good right now.');
         }  else if (tempData.currently.icon == 'wind') {
             icon.attr('src', '/assets/windy.png');
-            $('#string').html('Hang onto you cap, it’s windy right now.');
+            string.html('Hang onto you cap, it’s windy right now.');
         }
 
       }
