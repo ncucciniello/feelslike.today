@@ -14,6 +14,7 @@
       method: 'GET',
       dataType: 'JSON',
       success: (locationData) => {
+        console.log(locationData.city);
         lat = locationData.lat;
         lng = locationData.lon;
         if ( lat == '') {
@@ -31,6 +32,7 @@
       method: 'GET',
       dataType: 'JSON',
       success: (tempData) => {
+        console.log(tempData.currently.summary)
 
         // set temp to curent feels like temp and round it to whole number.
         $('#temp').html(`Feels like ${Math.round(tempData.currently.apparentTemperature)}°F today.`);
