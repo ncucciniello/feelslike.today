@@ -26,22 +26,22 @@ img {
 h1 {
   font-size: 24px;
   font-weight: 400;
-  margin-bottom: 10px;
   font-family: Roboto;
+  margin-bottom: 10px;
 }
 
 h2 {
-  font-family: Roboto;
-  font-weight: 400;
-  font-size: 20px;
   color: #8B8B8B;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: Roboto;
 }
 
 #text {
   bottom: 40px;
   left: 40px;
   margin-right: 40px;
-  position: fixed;
+  position: absolute;
   animation: fadein 4s;
   -o-animation: fadein 4s;
   -moz-animation: fadein 4s;
