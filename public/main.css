@@ -4,12 +4,14 @@
   -webkit-font-smoothing: antialiased;
 }
 
-html {
-  width:100%;
-  height:100%;
+#main {
+  width:100vw;
+  height:100vh;
+  position: relative;
+  transition: margin-left .5s;
 }
 
-img {
+#icon {
   top: 50%;
   left: 50%;
   width: 80px;
@@ -22,6 +24,7 @@ img {
   -moz-animation: 1s ease-out 0s 1 slideInFromBottom;
   -webkit-animation: 1s ease-out 0s 1 slideInFromBottom;
 }
+
 
 h1 {
   font-size: 24px;
@@ -37,6 +40,18 @@ h2 {
   font-family: Roboto;
 }
 
+h3 {
+  left: 50%;
+  bottom: 5%;
+  margin-left: -28px;
+  color: #8B8B8B;
+  font-size: 20px;
+  font-weight: 400;
+  position: absolute;
+  font-family: Roboto;
+  cursor: pointer;
+}
+
 #text {
   bottom: 40px;
   left: 40px;
@@ -46,6 +61,27 @@ h2 {
   -o-animation: fadein 4s;
   -moz-animation: fadein 4s;
   -webkit-animation: fadein 4s;
+}
+
+#hourlyPanel {
+  bottom: 0;
+  width: 100%;
+  /*z-index: -1;*/
+  height: 200px;
+  display: none;
+  overflow: auto;
+  position: absolute;
+  white-space: nowrap;
+  background-color: #aaaaaa;
+  box-sizing: border-box;
+}
+
+.hourPanel {
+  width:200px;
+  height: 150px;
+  display: inline-block;
+  border: 1px solid green;
+  background-color: orange;
 }
 
 @keyframes slideInFromBottom {

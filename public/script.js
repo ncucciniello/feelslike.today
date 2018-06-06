@@ -32,6 +32,7 @@
       method: 'GET',
       dataType: 'JSON',
       success: (tempData) => {
+        console.log(tempData)
         console.log(tempData.currently.summary)
 
         // set temp to curent feels like temp and round it to whole number.
@@ -76,7 +77,29 @@
     });
   }
 
+  function toggleHourly() {
+    if ($('#hourlyPanel').css('display') == 'block') {
+      var height = '-=' + $('#hourlyPanel').height();
+      var oppHeight = '+=' + $('#hourlyPanel').height();
+    } else {
+      var height = '+=' + $('#hourlyPanel').height();
+      var oppHeight = '-=' + $('#hourlyPanel').height();
+    }
+
+    $("#hourlyPanel").slideToggle("slow");
+
+    $("#main").animate({
+      bottom: height
+    }, "slow")
+
+    $("#icon").animate({
+      top: oppHeight
+    }, "slow")
+  }
+
   // on page load the getLocation function will run
   getLocation()
+
+  $("#hourly").click(toggleHourly);
 
 })();
