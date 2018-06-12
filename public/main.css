@@ -66,22 +66,42 @@ h3 {
 #hourlyPanel {
   bottom: 0;
   width: 100%;
-  /*z-index: -1;*/
-  height: 200px;
+  height: 150px;
   display: none;
   overflow: auto;
   position: absolute;
   white-space: nowrap;
-  background-color: #aaaaaa;
   box-sizing: border-box;
+  border-top: 1px solid #8B8B8B;
+  /*background-color: #aaaaaa;*/
 }
 
 .hourPanel {
-  width:200px;
-  height: 150px;
+  width:150px;
+  height: 149px;
+  text-align: center;
   display: inline-block;
-  border: 1px solid green;
-  background-color: orange;
+  /*border: 1px solid green;*/
+  /*background-color: orange;*/
+}
+
+#hourImg {
+  height: 50px;
+  margin: 12px 0 12px 0;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Roboto;
+}
+
+#hourTemp {
+  margin-bottom: 12px;
+}
+
+#hourTime {
+  color: #8B8B8B;
 }
 
 @keyframes slideInFromBottom {

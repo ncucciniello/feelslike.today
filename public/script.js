@@ -7,6 +7,7 @@
   let lng = '';
   let icon = $('<img>').attr('id', 'icon');
   let string = $('#string');
+  let hourlyData = [];
 
   function getLocation() {
     $.ajax({
@@ -14,7 +15,7 @@
       method: 'GET',
       dataType: 'JSON',
       success: (locationData) => {
-        console.log(locationData.city);
+        console.log('Location = ' + locationData.city);
         lat = locationData.lat;
         lng = locationData.lon;
         if ( lat == '') {
@@ -28,12 +29,13 @@
 
   function getTemp() {
     $.ajax({
-      url:`/weather?myLat=${lat}&myLong=${lng}`,
+      url:`/weather?myLat=${lat}&myLong=${lng}?exclude=minutely,daily,flags`,
       method: 'GET',
       dataType: 'JSON',
       success: (tempData) => {
+        console.log('Current Weather Summary = ' + tempData.currently.summary)
+        hourlyData = tempData.hourly.data
         console.log(tempData)
-        console.log(tempData.currently.summary)
 
         // set temp to curent feels like temp and round it to whole number.
         $('#temp').html(`Feels like ${Math.round(tempData.currently.apparentTemperature)}°F today.`);
@@ -49,7 +51,7 @@
             string.html('So many clouds right now.');
         } else if (tempData.currently.icon == 'partly-cloudy-day') {
             icon.attr('src', '/assets/partly_cloudy.png');
-            string.html('The sun is trying to sneak out right now.');
+            string.html('Looking good out there.');
         } else if (tempData.currently.icon == 'rain') {
             icon.attr('src', '/assets/rainy.png');
             string.html('Bring an umbrella on your journey.');
@@ -64,7 +66,7 @@
             string.html('The stars are looking good right now.');
         } else if (tempData.currently.icon == 'partly-cloudy-night') {
             icon.attr('src', '/assets/partly_cloudy_night.png');
-            string.html('The moon is hiding behind some clouds.');
+            string.html('A couple clouds are hanging out with the moon.');
         } else if (tempData.currently.icon == 'snow') {
             icon.attr('src', '/assets/snow.png');
             string.html('Better bundle up, it’s snowing out there.');
@@ -72,10 +74,56 @@
             icon.attr('src', '/assets/snow.png');
             string.html(`Don't slip, there is going to be sleet today.`);
         }
-
+      getHourlyInfo();
       }
     });
   }
+
+  function getHourlyInfo() {
+
+    hourlyData.forEach((item) => {
+      // let summary = item.summary ;
+      let img = $('<img>').attr({
+        src: '/assets/sunny.png',
+        id: 'hourImg'
+      });
+      let temp = $('<p id=hourTemp />').append(Math.round(item.temperature) + '°F');
+      let time = $('<p id=hourTime />').append(convertTimestamp(item.time).time) ;
+      let panel = $('<div>').attr('class', 'hourPanel')
+      panel.append(img, temp, time);
+      $('#hourlyPanel').append(panel)
+    })
+  }
+
+  function convertTimestamp(timestamp) {
+    var d = new Date(timestamp * 1000), // Convert the passed timestamp to milliseconds
+      yyyy = d.getFullYear(),
+      mm = ('0' + (d.getMonth() + 1)).slice(-2),  // Months are zero based. Add leading 0.
+      dd = ('0' + d.getDate()).slice(-2),     // Add leading 0.
+      hh = d.getHours(),
+      h = hh,
+      min = ('0' + d.getMinutes()).slice(-2),   // Add leading 0.
+      ampm = 'AM',
+      timeInfo;
+
+    if (hh > 12) {
+      h = hh - 12;
+      ampm = 'PM';
+    } else if (hh === 12) {
+      h = 12;
+      ampm = 'PM';
+    } else if (hh == 0) {
+      h = 12;
+    }
+
+    timeInfo =
+    {
+      date: mm + '/' + dd + '/' + yyyy,
+      time: h + ':' + min + ampm
+    }
+    return timeInfo;
+  }
+
 
   function toggleHourly() {
     if ($('#hourlyPanel').css('display') == 'block') {
@@ -99,6 +147,7 @@
 
   // on page load the getLocation function will run
   getLocation()
+
 
   $("#hourly").click(toggleHourly);
 
