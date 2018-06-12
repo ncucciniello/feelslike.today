@@ -72,13 +72,13 @@ h3 {
   position: absolute;
   white-space: nowrap;
   box-sizing: border-box;
-  border-top: 1px solid #8B8B8B;
+  /*border-top: 1px solid #8B8B8B;*/
   /*background-color: #aaaaaa;*/
 }
 
 .hourPanel {
   width:150px;
-  height: 149px;
+  height: 150px;
   text-align: center;
   display: inline-block;
   /*border: 1px solid green;*/

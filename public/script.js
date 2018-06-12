@@ -15,7 +15,7 @@
       method: 'GET',
       dataType: 'JSON',
       success: (locationData) => {
-        console.log('Location = ' + locationData.city);
+        // console.log('Location = ' + locationData.city);
         lat = locationData.lat;
         lng = locationData.lon;
         if ( lat == '') {
@@ -33,9 +33,9 @@
       method: 'GET',
       dataType: 'JSON',
       success: (tempData) => {
-        console.log('Current Weather Summary = ' + tempData.currently.summary)
+        // console.log('Current Weather Summary = ' + tempData.currently.summary)
         hourlyData = tempData.hourly.data
-        console.log(tempData)
+        // console.log(tempData)
 
         // set temp to curent feels like temp and round it to whole number.
         $('#temp').html(`Feels like ${Math.round(tempData.currently.apparentTemperature)}°F today.`);
@@ -80,18 +80,38 @@
   }
 
   function getHourlyInfo() {
-
+    // console.log(convertTimestamp(hourlyData[0].time).date)
     hourlyData.forEach((item) => {
-      // let summary = item.summary ;
-      let img = $('<img>').attr({
-        src: '/assets/sunny.png',
-        id: 'hourImg'
-      });
-      let temp = $('<p id=hourTemp />').append(Math.round(item.temperature) + '°F');
-      let time = $('<p id=hourTime />').append(convertTimestamp(item.time).time) ;
-      let panel = $('<div>').attr('class', 'hourPanel')
-      panel.append(img, temp, time);
-      $('#hourlyPanel').append(panel)
+      if (convertTimestamp(item.time).date == convertTimestamp(hourlyData[0].time).date) {
+        let img = $('<img>').attr('id', 'hourImg');
+
+        if (item.icon == 'clear-day') {
+          img.attr('src', '/assets/sunny.png');
+        } else if (item.icon == 'cloudy') {
+            img.attr('src', '/assets/cloudy.png');
+        } else if (item.icon == 'partly-cloudy-day') {
+            img.attr('src', '/assets/partly_cloudy.png');
+        } else if (item.icon == 'rain') {
+            img.attr('src', '/assets/rainy.png');
+        } else if (item.icon == 'wind') {
+            img.attr('src', '/assets/windy.png');
+        } else if (item.icon == 'fog') {
+            img.attr('src', '/assets/cloudy.png');
+        } else if (item.icon == 'clear-night') {
+            img.attr('src', '/assets/clear_night.png');
+        } else if (item.icon == 'partly-cloudy-night') {
+            img.attr('src', '/assets/partly_cloudy_night.png');
+        } else if (item.icon == 'snow') {
+            img.attr('src', '/assets/snow.png');
+        } else if (item.icon == 'sleet') {
+            img.attr('src', '/assets/snow.png');
+        }
+        let temp = $('<p id=hourTemp />').append(Math.round(item.temperature) + '°F');
+        let time = $('<p id=hourTime />').append(convertTimestamp(item.time).time) ;
+        let panel = $('<div>').attr('class', 'hourPanel')
+        panel.append(img, temp, time);
+        $('#hourlyPanel').append(panel)
+      }
     })
   }
 
@@ -124,7 +144,6 @@
     return timeInfo;
   }
 
-
   function toggleHourly() {
     if ($('#hourlyPanel').css('display') == 'block') {
       var height = '-=' + $('#hourlyPanel').height();
@@ -147,7 +166,6 @@
 
   // on page load the getLocation function will run
   getLocation()
-
 
   $("#hourly").click(toggleHourly);
 
