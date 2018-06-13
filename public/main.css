@@ -104,6 +104,12 @@ p {
   color: #8B8B8B;
 }
 
+@media (max-width: 849px) {
+  h3 {
+    display: none;
+  }
+}
+
 @keyframes slideInFromBottom {
   0% {
     transform: translateY(100%);

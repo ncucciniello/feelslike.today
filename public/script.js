@@ -167,6 +167,10 @@
   // on page load the getLocation function will run
   getLocation()
 
-  $("#hourly").click(toggleHourly);
+  if($(window).width() < 850 ) {
+    $('#main').click(toggleHourly);
+  } else {
+      $("#hourly").click(toggleHourly);
+    }
 
 })();
