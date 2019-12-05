@@ -2,7 +2,7 @@
 
 (() => {
 
-  // Set "global" variables to be used later.
+  // Set "global" variables.
   let lat = '';
   let lng = '';
   let icon = $('<img>').attr('id', 'icon');
@@ -112,7 +112,7 @@
         panel.append(img, temp, time);
         $('#hourlyPanel').append(panel)
       }
-    })
+    });
   }
 
   function convertTimestamp(timestamp) {
@@ -145,6 +145,11 @@
   }
 
   function toggleHourly() {
+    //If animated than we wait the animation to be over
+    if ($(':animated').length) {
+      return false;
+    }
+
     if ($('#hourlyPanel').css('display') == 'block') {
       var height = '-=' + $('#hourlyPanel').height();
       var oppHeight = '+=' + $('#hourlyPanel').height();
@@ -164,8 +169,14 @@
     }, "slow")
   }
 
+
+  function setHeight() {
+    $('#main').height(window.innerHeight);
+  }
+
   // on page load the getLocation function will run
   getLocation()
+  setHeight();
 
   if($(window).width() < 850 ) {
     $('#main').click(toggleHourly);
